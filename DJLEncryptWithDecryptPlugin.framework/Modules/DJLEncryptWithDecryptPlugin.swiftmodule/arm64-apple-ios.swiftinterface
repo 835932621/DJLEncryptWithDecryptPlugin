@@ -1,0 +1,227 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-ios13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name DJLEncryptWithDecryptPlugin
+// swift-module-flags-ignorable:  -interface-compiler-version 6.1.2
+import CommonCrypto
+import CryptoSwift
+import Foundation
+import Swift
+import SwiftyRSA
+import SystemConfiguration
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct DJLRSATool {
+  public static func rsa_encrypt(_ str: Swift.String, _ publicKey: Swift.String) -> Swift.String
+  public static func rsa_decrypt(_ str: Swift.String, _ privateKey: Swift.String) -> Swift.String
+  public static func aes_encrypt(_ str: Swift.String, aes_key: Swift.String, kInitVectorS: Swift.String) -> Swift.String
+  public static func aes_decrypt(_ str: Swift.String, aes_key: Swift.String, iv: Swift.String) -> Swift.String
+  public static func encryptData(_ data: Foundation.Data, privateKey: Swift.String) -> Foundation.Data?
+  public static func encryptString(_ string: Swift.String, privateKey: Swift.String) -> Swift.String?
+  public static func decryptData(_ data: Foundation.Data, privateKey: Swift.String) -> Foundation.Data?
+  public static func decryptString(_ string: Swift.String, privateKey: Swift.String) -> Swift.String?
+  public static func encryptData(_ data: Foundation.Data, publicKey: Swift.String) -> Foundation.Data?
+  public static func encryptString(_ string: Swift.String, publicKey: Swift.String) -> Swift.String?
+  public static func decryptData(_ data: Foundation.Data, publicKey: Swift.String) -> Foundation.Data?
+  public static func decryptString(_ string: Swift.String, publicKey: Swift.String) -> Swift.String?
+  public static func encryptData(_ data: Foundation.Data, privateKeyData: Foundation.Data) -> Foundation.Data?
+  public static func encryptString(_ string: Swift.String, privateKeyData: Foundation.Data) -> Swift.String?
+  public static func decryptData(_ data: Foundation.Data, privateKeyData: Foundation.Data) -> Foundation.Data?
+  public static func decryptString(_ string: Swift.String, privateKeyData: Foundation.Data) -> Swift.String?
+  public static func encryptData(_ data: Foundation.Data, publicKeyData: Foundation.Data) -> Foundation.Data?
+  public static func encryptString(_ string: Swift.String, publicKeyData: Foundation.Data) -> Swift.String?
+  public static func decryptData(_ data: Foundation.Data, publicKeyData: Foundation.Data) -> Foundation.Data?
+  public static func decryptString(_ string: Swift.String, publicKeyData: Foundation.Data) -> Swift.String?
+  public static func encryptData(_ data: Foundation.Data, privateKeyPath: Swift.String) -> Foundation.Data?
+  public static func encryptString(_ string: Swift.String, privateKeyPath: Swift.String) -> Swift.String?
+  public static func decryptData(_ data: Foundation.Data, privateKeyPath: Swift.String) -> Foundation.Data?
+  public static func decryptString(_ string: Swift.String, privateKeyPath: Swift.String) -> Swift.String?
+  public static func encryptData(_ data: Foundation.Data, publicKeyPath: Swift.String) -> Foundation.Data?
+  public static func encryptString(_ string: Swift.String, publicKeyPath: Swift.String) -> Swift.String?
+  public static func decryptData(_ data: Foundation.Data, publicKeyPath: Swift.String) -> Foundation.Data?
+  public static func decryptString(_ string: Swift.String, publicKeyPath: Swift.String) -> Swift.String?
+  public static func addPublicKey(_ data: Foundation.Data) -> Security.SecKey?
+}
+public protocol O2SCBaseErrorProtocol : Foundation.LocalizedError {
+  var errorDomain: Swift.String? { get }
+  var errorCode: Swift.Int? { get }
+  var errorUserInfo: [Swift.String : Any]? { get }
+}
+public class O2SCBaseError : DJLEncryptWithDecryptPlugin.O2SCBaseErrorProtocol {
+  public var errorDomain: Swift.String?
+  public var errorCode: Swift.Int?
+  public var errorUserInfo: [Swift.String : Any]?
+  public init(_ desc: Swift.String)
+  public init(_ domain: Swift.String?, code: Swift.Int, userInfo: [Swift.String : Any]?)
+  public var errorDescription: Swift.String? {
+    get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class O2SCBytes {
+  public class func readInt8FromBytes(_ array: [Swift.UInt8], offset: Swift.Int) -> Swift.Int8
+  public class func readInt16FromBytes(_ array: [Swift.UInt8], offset: Swift.Int) -> Swift.Int16
+  public class func readInt32FromBytes(_ array: [Swift.UInt8], offset: Swift.Int) -> Swift.Int32
+  public class func readInt64FromBytes(_ array: [Swift.UInt8], offset: Swift.Int) -> Swift.Int64
+  public class func readStringByData(_ data: Foundation.Data, start: Swift.Int, lenght: Swift.Int) -> Swift.String
+  @objc deinit
+}
+extension Swift.Int {
+  public func o2sc_to1Bytes() -> [Swift.UInt8]
+  public func o2sc_to2Bytes() -> [Swift.UInt8]
+  public func o2sc_to4Bytes() -> [Swift.UInt8]
+  public func o2sc_to8Bytes() -> [Swift.UInt8]
+}
+extension Foundation.Data {
+  public mutating func o2sc_writeInt8(_ value: Swift.Int)
+  public func o2sc_readInt8(_ offset: Swift.Int) -> Swift.Int8
+  public mutating func o2sc_writeInt16(_ value: Swift.Int)
+  public func o2sc_readInt16(_ offset: Swift.Int) -> Swift.Int16
+  public mutating func o2sc_writeInt32(_ value: Swift.Int)
+  public func o2sc_readInt32(_ offset: Swift.Int) -> Swift.Int32
+  public mutating func o2sc_writeInt64(_ value: Swift.Int)
+  public func o2sc_readInt64(_ offset: Swift.Int) -> Swift.Int64
+  public mutating func o2sc_writeString(_ value: Swift.String)
+  public func o2sc_readString(_ start: Swift.Int, lenght: Swift.Int) -> Swift.String
+}
+@_hasMissingDesignatedInitializers public class O2SCColor {
+  public class func colorWithRGB(_ rgb: Swift.UInt64, alpha: CoreFoundation.CGFloat = 1) -> UIKit.UIColor
+  public class func colorWithARGB(_ argb: Swift.UInt64) -> UIKit.UIColor
+  public class func colorWithRGB(_ rgb: Swift.String, alpha: CoreFoundation.CGFloat = 1) -> UIKit.UIColor
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class O2SCCrypt {
+  public class func urlEncodeString(_ string: Swift.String, forEncoding encoding: Swift.String.Encoding) -> Swift.String?
+  public class func urlDecodeString(_ string: Swift.String, forEncoding encoding: Swift.String.Encoding) -> Swift.String?
+  public class func hexStringByData(_ data: Foundation.Data) -> Swift.String
+  public class func dataByHexString(_ hexString: Swift.String) -> Foundation.Data?
+  public class func hexStringByBytes(_ bytes: [Swift.UInt8]) -> Swift.String
+  public class func stringByBase64EncodeData(_ data: Foundation.Data) -> Swift.String
+  public class func dataByBase64DecodeString(_ string: Swift.String) -> Foundation.Data?
+  public class func stringByBase64DecodeString(_ string: Swift.String) -> Swift.String?
+  public class func stringByBase64EncodeData(_ data: Foundation.Data, mask: Foundation.Data) -> Swift.String
+  public class func stringByBase64DecodeString(_ string: Swift.String, mask: Foundation.Data) -> Swift.String?
+  public class func md5(plainString: Swift.String) -> Swift.String
+  public class func sha(plainString: Swift.String, algorithm: DJLEncryptWithDecryptPlugin.O2SCSHAAlgorithm) -> Swift.String
+  public class func hmac(plainString: Swift.String, algorithm: DJLEncryptWithDecryptPlugin.O2SCHMACAlgorithm, key: Swift.String) -> Swift.String
+  public class func aes128Encrypt(plainData: Foundation.Data, encryptionKey: Swift.String, encoding: Swift.String.Encoding) throws -> Foundation.Data
+  public class func aes128Encrypt(plainData: Foundation.Data, encryptionKey: Foundation.Data, options: CommonCrypto.CCOptions) throws -> Foundation.Data
+  public class func aes128Decrypt(cipherData: Foundation.Data, decryptionKey: Swift.String, encoding: Swift.String.Encoding) throws -> Foundation.Data
+  public class func aes128Decrypt(cipherData: Foundation.Data, decryptionKey: Foundation.Data, options: CommonCrypto.CCOptions) throws -> Foundation.Data
+  @objc deinit
+}
+public typealias O2SCDigestAlgorithmClosure = (_ data: Swift.UnsafeRawPointer, _ dataLength: Swift.UInt32) -> [Swift.UInt8]
+public enum O2SCSHAAlgorithm {
+  case MD2, MD4, MD5, SHA1, SHA224, SHA256, SHA384, SHA512
+  public static func == (a: DJLEncryptWithDecryptPlugin.O2SCSHAAlgorithm, b: DJLEncryptWithDecryptPlugin.O2SCSHAAlgorithm) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum O2SCHMACAlgorithm {
+  case MD5, SHA1, SHA224, SHA256, SHA384, SHA512
+  public static func == (a: DJLEncryptWithDecryptPlugin.O2SCHMACAlgorithm, b: DJLEncryptWithDecryptPlugin.O2SCHMACAlgorithm) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class O2SCJson {
+  public class func stringByData(_ data: Foundation.Data) -> Swift.String?
+  public class func objectFromJSONString(_ jsonString: Swift.String) -> Any?
+  public class func objectFromJSONData(_ jsonData: Foundation.Data) -> Any?
+  public class func jsonStringFromObject(_ object: Any) -> Swift.String?
+  public class func jsonDataFromObject(_ object: Any) -> Foundation.Data?
+  public class func jsonDataFromObject(_ object: Any, serializeUnsupportedClassesUsingBlock block: (_ object: Any?) -> Any?) -> Foundation.Data?
+  public class func dictionaryFromJSONString(_ jsonString: Swift.String) -> Swift.Dictionary<Swift.String, Any>?
+  public class func arrayFromJSONString(_ jsonString: Swift.String) -> Swift.Array<Any>?
+  public static func JSONStringFromDictionary(_ dict: Swift.Dictionary<Swift.String, Any>) -> Swift.String
+  public static func JSONStringFromArray(_ array: Swift.Array<Any>) -> Swift.String
+  @objc deinit
+}
+public enum O2SCReachabilityError : Swift.Error {
+  case failedToCreateWithAddress(Darwin.sockaddr, Swift.Int32)
+  case failedToCreateWithHostname(Swift.String, Swift.Int32)
+  case unableToSetCallback(Swift.Int32)
+  case unableToSetDispatchQueue(Swift.Int32)
+  case unableToGetFlags(Swift.Int32)
+}
+extension Foundation.NSNotification.Name {
+  public static let O2SCReachabilityChanged: Foundation.Notification.Name
+}
+public class O2SCReachability {
+  public typealias O2SCNetworkReachable = (DJLEncryptWithDecryptPlugin.O2SCReachability) -> ()
+  public typealias O2SCNetworkUnreachable = (DJLEncryptWithDecryptPlugin.O2SCReachability) -> ()
+  public enum Connection : Swift.CustomStringConvertible {
+    @available(*, deprecated, renamed: "unavailable")
+    case none
+    case unavailable, wifi, cellular
+    public var description: Swift.String {
+      get
+    }
+    public static func == (a: DJLEncryptWithDecryptPlugin.O2SCReachability.Connection, b: DJLEncryptWithDecryptPlugin.O2SCReachability.Connection) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var whenReachable: DJLEncryptWithDecryptPlugin.O2SCReachability.O2SCNetworkReachable?
+  public var whenUnreachable: DJLEncryptWithDecryptPlugin.O2SCReachability.O2SCNetworkUnreachable?
+  public var allowsCellularConnection: Swift.Bool
+  public var notificationCenter: Foundation.NotificationCenter
+  public var connection: DJLEncryptWithDecryptPlugin.O2SCReachability.Connection {
+    get
+  }
+  required public init(reachabilityRef: SystemConfiguration.SCNetworkReachability, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main)
+  convenience public init(hostname: Swift.String, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main) throws
+  convenience public init(queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main) throws
+  @objc deinit
+}
+extension DJLEncryptWithDecryptPlugin.O2SCReachability {
+  public func startNotifier() throws
+  public func stopNotifier()
+  @available(*, deprecated, message: "Please use `connection != .none`")
+  public var isReachable: Swift.Bool {
+    get
+  }
+  @available(*, deprecated, message: "Please use `connection == .cellular`")
+  public var isReachableViaWWAN: Swift.Bool {
+    get
+  }
+  @available(*, deprecated, message: "Please use `connection == .wifi`")
+  public var isReachableViaWiFi: Swift.Bool {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class O2SCRegex {
+  public class func stringByReplacingOccurrencesOfRegex(_ regex: Swift.String, string: Swift.String, usingBlock block: (_ captureCount: Swift.Int, _ capturedStrings: [Swift.String], _ capturedRanges: [Foundation.NSRange], _ stop: Swift.UnsafeMutablePointer<ObjectiveC.ObjCBool>) -> Swift.String) -> Swift.String
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class O2SCRuntime {
+  public class func to_v(instance: Swift.AnyObject, selector: ObjectiveC.Selector)
+  public class func to_v(cls: Swift.AnyClass, selector: ObjectiveC.Selector)
+  public class func to_s(instance: Swift.AnyObject, selector: ObjectiveC.Selector) -> Swift.String?
+  public class func to_s(cls: Swift.AnyClass, selector: ObjectiveC.Selector) -> Swift.String?
+  public class func to_b(instance: Swift.AnyObject, selector: ObjectiveC.Selector) -> Swift.Bool?
+  public class func to_b(cls: Swift.AnyClass, selector: ObjectiveC.Selector) -> Swift.Bool?
+  public class func to_i(instance: Swift.AnyObject, selector: ObjectiveC.Selector) -> Swift.Int?
+  public class func to_i(cls: Swift.AnyClass, selector: ObjectiveC.Selector) -> Swift.Int?
+  public class func to_d(instance: Swift.AnyObject, selector: ObjectiveC.Selector) -> Swift.Double?
+  public class func to_d(cls: Swift.AnyClass, selector: ObjectiveC.Selector) -> Swift.Double?
+  public class func to_date(instance: Swift.AnyObject, selector: ObjectiveC.Selector) -> Foundation.Date?
+  public class func to_date(cls: Swift.AnyClass, selector: ObjectiveC.Selector) -> Foundation.Date?
+  public class func to_obj(instance: Swift.AnyObject, selector: ObjectiveC.Selector) -> Swift.AnyObject?
+  public class func to_obj(cls: Swift.AnyClass, selector: ObjectiveC.Selector) -> Swift.AnyObject?
+  @objc deinit
+}
+extension DJLEncryptWithDecryptPlugin.O2SCSHAAlgorithm : Swift.Equatable {}
+extension DJLEncryptWithDecryptPlugin.O2SCSHAAlgorithm : Swift.Hashable {}
+extension DJLEncryptWithDecryptPlugin.O2SCHMACAlgorithm : Swift.Equatable {}
+extension DJLEncryptWithDecryptPlugin.O2SCHMACAlgorithm : Swift.Hashable {}
+extension DJLEncryptWithDecryptPlugin.O2SCReachability.Connection : Swift.Equatable {}
+extension DJLEncryptWithDecryptPlugin.O2SCReachability.Connection : Swift.Hashable {}
